@@ -1,0 +1,27 @@
+# Question
+3022. Minimize OR of Remaining Elements Using Operations
+Let's definde a "merge operation" as `num[i]` and `num[i+1]` did a bitwise-AND operation and were removed from the array, then the bitwise-AND product replce `num[i]`
+## Backtrack
+This is an intimidating question for me. It's bitwise-related, and it gives me the initial impression that the time complexity for a brute force solution is `O(n^2)`. Also, I don't know what container should I use to store this num array, I was thinking a heap, and use some greedy strategy to decide which number should be merged.
+
+ I got cold feet after a couple trials on the paper, I gave up even there is a full hour left in the contest.
+
+There are a couple observations I made: 
+
+say a number has n-bits, and we define final product as the number that we "OR"ed after all "AND" operation:
+1. 1000 always bigger than 0111, so in K moves, I want to eliminate the earlier bits first.
+2. if any number on i-bit has a 1, the final product will be 1 on that position due to the property of bitwise-OR. 
+3. as long as there is a 0 on any number on i-bit, this position can be turned into 0 due to the property of bitwise-AND. 
+4. You have to remove all 1s on that position on every number in the array if you want a 0 on that position in final product.
+## Observations
+
+1. the biggest insight of this problem is that don't think around any specific merge operation, instead thinking about the final product, the one after OR operation: 
+   1. can I get a 0 on 0-bit within k steps? 
+      1. if not, can I get 0 on 1-bit within k steps? 
+      2. if yes, k -= number of steps, set this bit to 0 in the final product
+      3. and keep this induction. this remove the trouble of selecting "merging strategy" problem I mentioned on **Backtrack**. 
+## Walkthrough
+
+## Thoughts
+1. the problem mentioned we can only "merge" `i` and `i+1` position, how do we proof the correctness of **Walkthrough** part?
+2. 
